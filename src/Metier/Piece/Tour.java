@@ -11,21 +11,8 @@ public class Tour extends Piece
 		super(lig, col, TYPE_TOUR, couleur);
 	}
 
-	public boolean peutDeplacer(int ligArr, int colArr, ArrayList<Piece> ensPiece) 
+	public boolean peutDeplacer(int lig, int col, ArrayList<Piece> ensPiece) 
 	{
-		int diffLig = Math.abs(ligArr - super.getLig());
-    	int diffCol = Math.abs(colArr - super.getCol());
-
-		//verifie que l'on deplace en ligne OU en colonne
-		if (!((diffCol > 0 && diffLig == 0) || (diffCol == 0 && diffLig > 0)))
-		{
-			return false;
-		}
-
-		//verifie qu'il n'y a personne entre le point de depart et celui d'arrive
-
-		return true;
+		return false;
 	}
-
-	
 }

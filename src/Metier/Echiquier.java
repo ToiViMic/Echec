@@ -111,6 +111,16 @@ public class Echiquier
 			return false; 
 		}
 
+		if ( this.detectEchec(this.couleurTour) )  //Si le joueur est en echec
+			if (p.getType() == 'K')
+				return this.deplacementEchec(ligArr, colArr, p);
+			else
+			{
+				System.out.println("Vous êtes en echec !");
+				return false;
+			}
+
+
 		char couleurJoueur = p.getCouleur(); 
 
 		//vérifie si y'a une pièce et vérifie si la pièce à la destination est de la même couleur que la pièce de départ
@@ -119,7 +129,7 @@ public class Echiquier
 			Piece pDest = getPiece(ligArr, colArr);
 			if (pDest != null)
 			{
-				if (pDest.getCouleur() == couleurJoueur)
+				if (pDest.getCouleur() == couleurJoueur || pDest.getType() == 'K')
 				{
 					System.out.println("Erreur dans la destination choisie");
 					return false;
@@ -143,22 +153,80 @@ public class Echiquier
 			this.changerTour();
 			return true;
 		}
-		System.out.println("Fin méthode deplacement -> return false");
-		//TEMPORAIRE ! changerTour pour tests
-		this.changerTour();
 		return false;
 	}
 
 	public char getCouleurTour()       { return this.couleurTour; }
 	public void setCouleurTour(char c) { this.couleurTour = c;}
-e
+
 	public void changerTour()
 	{
-		System.out.println("Entrée dans changerTour() : " + this.getCouleurTour());
+		//System.out.println("Entrée dans changerTour() : " + this.getCouleurTour());
 		if ( this.getCouleurTour() == 'B')
 			this.setCouleurTour('N');
 		else
 			this.setCouleurTour('B');
+	}
+
+	/* Ici, le programme va gérer quand la partie est en "Echec", soit quand une pièce peut se déplacer sur le Roi de l'autre couleur.
+	 * Il y a une partie détection detectEchec(char coul) et une partie deplacementEchec() qui test si le déplacement du Roi est possible
+	 */
+	public boolean detectEchec(char coul)
+	{
+		Piece roi = new Roi(0, 0, coul);
+		
+		//parcours de l'ensemble des pièces pour trouver le roi d'une couleur
+		for (Piece p : ensPiece)
+		{
+			if (p.getCouleur() == coul && p.getType() == 'K')
+			{
+				roi.setLig(p.getLig());
+				roi.setCol(p.getCol());
+			}
+		}
+
+		//parcours l'ensemble de pièces pour savoir si une d'entre elle peut se déplacer sur le roi (échec)
+		for (Piece p : ensPiece)
+		{
+			if ( p.getCouleur() != roi.getCouleur() && p.peutDeplacer(roi.getLig(), roi.getCol(), this.ensPiece) )
+				return true;
+		}
+
+		return false;
+	}
+
+	public boolean deplacementEchec(int ligArr, int colArr, Piece roi)
+	{
+		char couleurJoueur = roi.getCouleur();
+		int ligDep = roi.getLig();
+		int colDep = roi.getCol();
+
+		// Vérification si le déplacement du Roi est valide
+		if (roi.peutDeplacer(ligArr, colArr, this.ensPiece)) 
+		{
+			// Simuler le déplacement du Roi
+			char temp = plateau[ligArr][colArr];
+			plateau[ligArr][colArr] = plateau[ligDep][colDep];
+			plateau[ligDep][colDep] = ' ';
+
+			// Vérifier si le Roi est en échec après le déplacement
+			if (!detectEchec(couleurJoueur)) 
+			{
+				// Le Roi peut se déplacer en toute sécurité
+				roi.deplacer(ligArr, colArr);
+				changerTour();
+				return true;
+			} 
+			else 
+			{
+				// Annuler le déplacement si le Roi est en échec
+				System.out.println("Le Roi ne peut pas se déplacer ici");
+				plateau[ligDep][colDep] = plateau[ligArr][colArr];
+				plateau[ligArr][colArr] = temp;
+			}
+		}
+
+		return false; // Le déplacement du Roi n'est pas autorisé
 	}
 
 	public String toString ()
