@@ -5,13 +5,15 @@ public class Controleur
 {
 	public Controleur()
 	{
-		Echiquier e = new Echiquier ();
+		Echiquier e    = new Echiquier ();
 	
 		//System.out.println(e.getPiece(6, 1).getCouleur());
-		e.deplacement(6, 4, 5, 4);
-		e.deplacement(1, 3, 2, 3);
-		e.deplacement(7, 5, 3, 1);
-		e.deplacement(0, 4, 1, 3);
+		System.out.println(e.deplacement(6, 1, 4, 1));
+		System.out.println(e.deplacement(1, 0, 3, 0));
+		System.out.println(e.deplacement(7, 1, 5, 2));
+		System.out.println(e.deplacement(5, 2, 3, 3));
+		System.out.println(e.toString()); 
+		System.out.println(e.deplacement(3, 0, 4, 1));
 		System.out.println(e.toString()); 
 	}
 	public static void main (String[]a)
