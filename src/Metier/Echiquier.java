@@ -15,16 +15,23 @@ public class Echiquier
 	{"PB","PB","PB","PB","PB","PB","PB","PB"},
 	{"TB","CB","FB","KB","QB","FB","CB","TB"}};
 
-	public static int       LIMITE_PLATEAU = 8;
+	private final static int LIMITE_PLATEAU = 8;
 	private char             couleurTour;
 	
 	private ArrayList<Piece> ensPiece;
+	private ArrayList<Piece> noirElim;
+	private ArrayList<Piece> blancElim;
+
 	private char[][]         plateau;
 
 	public Echiquier()
 	{
 		this.couleurTour = 'B';
+		
 		this.ensPiece    = new ArrayList<Piece>();
+		this.noirElim    = new ArrayList<Piece>();
+		this.blancElim   = new ArrayList<Piece>();
+
 		this.plateau     = new char[LIMITE_PLATEAU][LIMITE_PLATEAU];
 		this.innitEchiquier();
 	}
@@ -110,8 +117,9 @@ public class Echiquier
 			System.out.println("Erreur dans la sélection d'une pièce"); 
 			return false; 
 		}
-
-		if ( this.detectEchec(this.couleurTour) )  //Si le joueur est en echec
+		//Si le joueur est en echec
+		if ( this.detectEchec(this.couleurTour) )
+		{
 			if (p.getType() == 'K')
 				return this.deplacementEchec(ligArr, colArr, p);
 			else
@@ -119,7 +127,7 @@ public class Echiquier
 				System.out.println("Vous êtes en echec !");
 				return false;
 			}
-
+		}
 
 		char couleurJoueur = p.getCouleur(); 
 
@@ -129,7 +137,7 @@ public class Echiquier
 			Piece pDest = getPiece(ligArr, colArr);
 			if (pDest != null)
 			{
-				if (pDest.getCouleur() == couleurJoueur || pDest.getType() == 'K')
+				if (pDest.getCouleur() == couleurJoueur)
 				{
 					System.out.println("Erreur dans la destination choisie");
 					return false;
@@ -153,23 +161,12 @@ public class Echiquier
 			this.changerTour();
 			return true;
 		}
+		System.out.println("Fin méthode deplacement -> return false");
 		return false;
 	}
 
-	public char getCouleurTour()       { return this.couleurTour; }
-	public void setCouleurTour(char c) { this.couleurTour = c;}
-
-	public void changerTour()
-	{
-		//System.out.println("Entrée dans changerTour() : " + this.getCouleurTour());
-		if ( this.getCouleurTour() == 'B')
-			this.setCouleurTour('N');
-		else
-			this.setCouleurTour('B');
-	}
-
 	/* Ici, le programme va gérer quand la partie est en "Echec", soit quand une pièce peut se déplacer sur le Roi de l'autre couleur.
-	 * Il y a une partie détection detectEchec(char coul) et une partie deplacementEchec() qui test si le déplacement du Roi est possible
+	 * Il y a une partie détection detectEchec et une partie deplacementEchec qui test si le déplacement du Roi est possible
 	 */
 	public boolean detectEchec(char coul)
 	{
@@ -193,6 +190,24 @@ public class Echiquier
 		}
 
 		return false;
+	}
+
+	//méthode qui permet de placer les pieces mortes dans la bonne liste
+	public void eliminer (Piece p)
+	{
+		//verifie si il n'est pas déjà élminier
+		if (this.ensPiece.get(ensPiece.indexOf(p))!=null)
+			return;
+		
+		if (p.getCouleur() == 'B')
+		{
+			this.blancElim.add(p);
+		}
+		else
+		{
+			this.noirElim.add(p);
+		}
+		this.ensPiece.remove(p);
 	}
 
 	public boolean deplacementEchec(int ligArr, int colArr, Piece roi)
@@ -227,6 +242,17 @@ public class Echiquier
 		}
 
 		return false; // Le déplacement du Roi n'est pas autorisé
+	}
+
+	public char getCouleurTour()       { return this.couleurTour; }
+	public void setCouleurTour(char c) { this.couleurTour = c; }
+	public void changerTour()
+	{
+		System.out.println("Entrée dans changerTour() : " + this.getCouleurTour());
+		if ( this.getCouleurTour() == 'B')
+			this.setCouleurTour('N');
+		else
+			this.setCouleurTour('B');
 	}
 
 	public String toString ()
