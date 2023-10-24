@@ -11,7 +11,7 @@ public class Tour extends Piece
 		super(lig, col, TYPE_TOUR, couleur);
 	}
 
-	public boolean peutDeplacer(int lig, int col, ArrayList<Piece> ensPiece) 
+	public boolean peutDeplacer(int ligArr, int colArr, ArrayList<Piece> ensPiece) 
 	{
 		int diffLig = Math.abs(ligArr - super.getLig());
 		int diffCol = Math.abs(colArr - super.getCol());
