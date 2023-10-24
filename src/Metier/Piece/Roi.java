@@ -3,7 +3,7 @@ package Metier.Piece;
 import java.util.ArrayList;
 
 public class Roi extends Piece
-{	
+{
 	private static final char TYPE_ROI = 'K';
 
 	public Roi(int lig, int col, char couleur)
