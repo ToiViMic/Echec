@@ -24,6 +24,54 @@ public class Tour extends Piece
 
 		//verifie qu'il n'y a personne entre le point de depart et celui d'arrive
 
+		//si on se deplace en colonne
+		if (diffCol > 0 && diffLig == 0)
+		{
+			if (ligArr < super.getLig())
+				for (int cpt = super.getCol(); cpt < colArr; cpt++)
+				{
+					for (Piece p : ensPiece)
+					{
+						if (p.getCol()==cpt && p.getLig()==ligArr)
+							return false;
+					}
+				}
+			else
+				for (int cpt = super.getCol(); cpt <= colArr; cpt--)
+				{
+					for (Piece p : ensPiece)
+					{
+						if (p.getCol()==cpt && p.getLig()==ligArr)
+							return false;
+					}
+				}
+		}
+		if (diffCol == 0 && diffLig > 0)
+		{
+			if (ligArr < super.getLig())
+				for (int cpt = super.getLig(); cpt < ligArr; cpt++)
+				{
+					for (Piece p : ensPiece)
+					{
+						if (p.getCol()==colArr && p.getLig()==cpt)
+							return false;
+					}
+				}
+			else
+				for (int cpt = super.getLig(); cpt <= ligArr; cpt--)
+				{
+					for (Piece p : ensPiece)
+					{
+						if (p.getCol()==colArr && p.getLig()==cpt)
+							return false;
+					}
+				}
+		}
+
+		return true;
+	}
+
+
 		return true;
 	}
 }
