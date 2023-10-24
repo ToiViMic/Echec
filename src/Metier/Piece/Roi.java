@@ -6,6 +6,7 @@ public class Roi extends Piece
 {
 	//vérifier que l'on déplace sur le plateau
 	
+	
 	private static final char TYPE_ROI = 'K';
 
 	public Roi(int lig, int col, char couleur)
