@@ -15,7 +15,7 @@ public class Echiquier
 	{"PB","PB","PB","PB","PB","PB","PB","PB"},
 	{"TB","CB","FB","KB","QB","FB","CB","TB"}};
 
-	private static int       LIMITE_PLATEAU = 8;
+	public static int       LIMITE_PLATEAU = 8;
 	private char             couleurTour;
 	
 	private ArrayList<Piece> ensPiece;
