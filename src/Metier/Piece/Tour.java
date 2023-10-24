@@ -46,6 +46,7 @@ public class Tour extends Piece
 					}
 				}
 		}
+		//si on deplace en ligne
 		if (diffCol == 0 && diffLig > 0)
 		{
 			if (ligArr < super.getLig())
