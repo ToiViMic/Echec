@@ -13,10 +13,6 @@ public class Roi extends Piece
 
 	public boolean peutDeplacer(int ligArr, int colArr, ArrayList<Piece> ensPiece) 
 	{
-		//vérifier que l'on déplace sur le plateau
-		if (ligArr < 0 || colArr < 0 || ligArr > Echiquier.LIMITE_PLATEAU || colArr > Echiquier.LIMITE_PLATEAU)
-			return false;
-			
 		int diffLig = Math.abs(ligArr - this.getLig());
 		int diffCol = Math.abs(colArr - this.getCol());
 
