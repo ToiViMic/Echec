@@ -24,6 +24,8 @@ public class Echiquier
 
 	private char[][]         plateau;
 
+
+	//innitialisation et construction 
 	public Echiquier()
 	{
 		this.couleurTour = 'B';
@@ -34,14 +36,6 @@ public class Echiquier
 
 		this.plateau     = new char[LIMITE_PLATEAU][LIMITE_PLATEAU];
 		this.innitEchiquier();
-	}
-
-	public Piece getPiece(int lig, int col)
-	{
-		for (Piece p : this.ensPiece)
-			if (p.getLig() == lig && p.getCol() == col)
-				return p;
-		return null;
 	}
 
 	public void innitEchiquier()
@@ -96,6 +90,9 @@ public class Echiquier
 			}
 		}
 	}
+
+
+	//methodes pour le jeu
 
 	//Mise à jour du plateau pour affichage
 	public void MajPlateau ()
@@ -244,8 +241,6 @@ public class Echiquier
 		return false; // Le déplacement du Roi n'est pas autorisé
 	}
 
-	public char getCouleurTour()       { return this.couleurTour; }
-	public void setCouleurTour(char c) { this.couleurTour = c; }
 	public void changerTour()
 	{
 		System.out.println("Entrée dans changerTour() : " + this.getCouleurTour());
@@ -270,4 +265,18 @@ public class Echiquier
 		}
 		return sRet;
 	}
+
+	//getters
+	public char getCouleurTour()       { return this.couleurTour; }
+	public Piece getPiece(int lig, int col)
+	{
+		for (Piece p : this.ensPiece)
+			if (p.getLig() == lig && p.getCol() == col)
+				return p;
+		return null;
+	}
+	
+	//setters
+	public void setCouleurTour(char c) { this.couleurTour = c; }
+
 }

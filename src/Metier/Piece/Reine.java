@@ -26,6 +26,7 @@ public class Reine extends Piece
 		if ((diffCol > 0 && diffLig == 0) || (diffCol == 0 && diffLig > 0) || (diffLig == diffCol))
 		{
 
+			//si on se deplace en diagonale
 			if ((diffLig == diffCol))
 			{
 				// Vérification du chemin libre entre ligDep, colDep et ligArr, colArr
