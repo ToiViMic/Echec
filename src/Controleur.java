@@ -6,6 +6,8 @@ public class Controleur
 	public Controleur()
 	{
 		Echiquier e    = new Echiquier ();
+
+		//e.jouer();
 	
 		//System.out.println(e.getPiece(6, 1).getCouleur());
 		System.out.println(e.deplacement(6, 1, 4, 1));

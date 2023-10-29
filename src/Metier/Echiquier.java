@@ -279,4 +279,27 @@ public class Echiquier
 	//setters
 	public void setCouleurTour(char c) { this.couleurTour = c; }
 
+
+	//methode qui lance le jeu, une sorte de main mais qui n'intervient que lorsqu'on le veut, on peut intervenir avant, pour faire bouger des pièces par exemple
+	public void jouer ()
+	{
+		/* 
+		tant que la partie n'est pas finie faire :
+		{
+			faire 
+			{
+				demander à l'utilisateur quelle piece, il veut deplacer
+			}tant que la piece n'est pas de la bonne couleur
+
+			faire 
+			{
+				demander à l'utilisateur ou il veut deplacer
+			}tant que le deplacement n'est pas valide
+
+			
+
+			changer le tour
+		}
+		*/
+	}
 }
