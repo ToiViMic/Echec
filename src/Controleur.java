@@ -7,7 +7,7 @@ public class Controleur
 	{
 		Echiquier e    = new Echiquier ();
 
-		//e.jouer();
+		e.jouer();
 	
 		//System.out.println(e.getPiece(6, 1).getCouleur());
 		System.out.println(e.deplacement(6, 1, 4, 1));
@@ -21,5 +21,5 @@ public class Controleur
 	public static void main (String[]a)
 	{
 		new Controleur();
-	}
+	} 
 }

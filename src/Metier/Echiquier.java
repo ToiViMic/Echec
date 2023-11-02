@@ -2,6 +2,7 @@ package Metier;
 
 import Metier.Piece.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Echiquier
 {
@@ -283,23 +284,41 @@ public class Echiquier
 	//methode qui lance le jeu, une sorte de main mais qui n'intervient que lorsqu'on le veut, on peut intervenir avant, pour faire bouger des pièces par exemple
 	public void jouer ()
 	{
-		/* 
-		tant que la partie n'est pas finie faire :
+		//demander la piece que le joueur choisi
+		Scanner sc = new Scanner(System.in);
+		String str = "";
+		int lig = 0;
+		int col = 0;
+		int ligA = 0;
+		int colA = 0;
+
+		System.out.println(toString());
+
+		System.out.println("C'est au tour du joueur " + getCouleurTour());
+
+		do
 		{
-			faire 
+			System.out.println("Quelle est l'emplacement de la piece que vous voulez jouer ? (ligne,colonne)");
+			str = sc.nextLine();
+			if (str.length() > 2)
 			{
-				demander à l'utilisateur quelle piece, il veut deplacer
-			}tant que la piece n'est pas de la bonne couleur
+				lig = Integer.parseInt(""+str.charAt(0));
+				col = Integer.parseInt(""+str.charAt(2));
+			}
+		}while (getPiece(lig, col) == null && getPiece(ligA, colA).getCouleur() != getCouleurTour());
+		System.out.println(getPiece(lig, col));
 
-			faire 
+		do
+		{
+			System.out.println("Où voulez vous deplacer cette pièce ? (ligne,colonne)");
+			str = sc.nextLine();
+			if (str.length() > 2)
 			{
-				demander à l'utilisateur ou il veut deplacer
-			}tant que le deplacement n'est pas valide
+				ligA = (int) str.charAt(0);
+				colA = (int) str.charAt(2);
+			}
+		}while (!deplacement(lig, col, ligA, colA));
 
-			
-
-			changer le tour
-		}
-		*/
+		changerTour();
 	}
 }
