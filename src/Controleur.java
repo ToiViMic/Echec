@@ -17,9 +17,9 @@ public class Controleur
 		System.out.println(e.toString()); 
 		System.out.println(e.deplacement(3, 0, 4, 1));
 		System.out.println(e.toString()); 
-	}
+	} 
 	public static void main (String[]a)
 	{
 		new Controleur();
-	} 
+	}  
 }

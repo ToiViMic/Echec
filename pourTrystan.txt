@@ -1,0 +1,9 @@
+On fait d'abord fonctionner les bases avec juste les pieces sans deplacement en fonction du moment de la partie.
+J'ai mis des bouts de code dans pourPlusTard.txt, c'est tes detections d'echec.
+Je vais commencer à faire le gui mais faut faire une partie cui pour s'assurer du fonctionnement du metier.
+
+Je pense qu'on devrait s'organiser comme ça on peut faire des trucs en parallele :
+- on fait marcher une partie vite fait en cui 
+- je me tape le gui et on fait marcher en gui 
+- on s'occupe de pion 
+- on se fait le roi et les echecs
